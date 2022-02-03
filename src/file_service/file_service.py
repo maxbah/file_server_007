@@ -36,11 +36,10 @@ def get_file_permissions(filename):
         print('File not existed')
 
 
-def set_file_permissions(filename):
+def set_file_permissions(filename, perm):
     if os.path.exists(filename):
-        permissions = input("Input UNIX permissions in oct format (777):")
-        print(f"Set {permissions} to {filename}")
-        os.chmod(filename, permissions)
+        print(f"Set {perm} to {filename}")
+        os.chmod(filename, perm)
     else:
         print('File not existed')
 
