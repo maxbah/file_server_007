@@ -12,6 +12,7 @@ def create_file(content):
     file_name = random_file_name()
     with open(file_name, "w") as f:
         f.write(content)
+    print(f'File - {file_name} created. File content: {content}')
     return content
 
 
@@ -36,9 +37,8 @@ def get_file_permissions(filename):
 
 
 def set_file_permissions(filename):
-    filename = input("Enter file name : ")
     if os.path.exists(filename):
-        permissions = input("Input UNIX permissions in oct format (0o777):")
+        permissions = input("Input UNIX permissions in oct format (777):")
         print(f"Set {permissions} to {filename}")
         os.chmod(filename, permissions)
     else:
