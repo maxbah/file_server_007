@@ -3,7 +3,6 @@ import argparse
 import os
 
 from src import file_service
-from src import utils
 
 
 def read_file():
@@ -17,9 +16,7 @@ def read_file():
 
 def create_file():
     content = input('Please type file content: ')
-    filename = utils.random_file_name()
     file_service.create_file(content)
-    print(f'File - {filename} created. File content: {content}')
 
 
 def delete_file():
