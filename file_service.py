@@ -90,3 +90,16 @@ def get_cwd():
     """
     wd = os.getcwd()
     return wd
+
+
+def get_file_metadata(filename: str) -> tuple:
+    """
+    Read file and get metadata
+    :param filename:
+    :return: tuple(create_date, midification_date, filesize)
+    :raises Exception ig file not exist
+    """
+    create_date = os.path.getctime(filename)
+    modification_date = os.path.getmtime(filename)
+    f_size = os.path.getsize(filename)
+    return (create_date, modification_date, f_size),

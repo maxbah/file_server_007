@@ -5,6 +5,7 @@ from mock import mock_open
 import mock
 
 
+
 def test_create_file_success(mocker):
     """
     Test create file positive
@@ -119,3 +120,35 @@ def test_change_dir_not_exist(mocker):
     ch_dir_mock.return_value = 'FileNotFoundError'
     with pytest.raises(Exception):
         raise file_service.change_dir(targ_dir)
+
+
+def test_get_metadata(mocker):
+    """
+    Test for check metadata for filename
+    :param mocker: mock object
+    :return: None
+    """
+    test_filename = 'test_file'
+    create_date_mock = mocker.patch('os.path.getctime')
+    create_date_mock.return_value = 123
+    modification_date = mocker.patch('os.path.getmtime')
+    modification_date.return_value = 456
+    file_size_mock = mocker.patch('os.path.getsize')
+    file_size_mock.return_value = 789
+
+    res = file_service.get_file_metadata(test_filename)
+
+    assert res == ((123, 456, 789),)
+
+
+def test_non_existing_file_metadata(mocker):
+    """
+    Test metadata for non existing file
+    :param mocker: mock obj
+    :return: None
+    """
+    test_filename = 'test_file'
+    exist_mock = mocker.patch('os.path.exists')
+    exist_mock.return_value = 'FileNotFoundError'
+    with pytest.raises(Exception):
+        raise file_service.get_file_metadata(test_filename)

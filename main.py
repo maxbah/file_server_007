@@ -100,6 +100,16 @@ def get_cwd():
     print(f" Currently we in: {wd}")
 
 
+def get_metadata():
+    """
+    Function to get metadata
+    :return: tuple
+    """
+    filename = input("Enter file name : ")
+    metadata = file_service.file_service.get_file_metadata(filename)
+    print(f"Metadata for {filename}: {metadata}")
+
+
 def main():
     """
     Main function
@@ -117,7 +127,8 @@ def main():
         "cd": change_dir,
         "get_perm": get_file_permissions,
         "set_perm": set_file_permissions,
-        "cwd": get_cwd
+        "cwd": get_cwd,
+        "mtd": get_metadata
     }
     while True:
         if args.path:
