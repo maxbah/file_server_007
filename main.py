@@ -6,6 +6,10 @@ from src import file_service
 
 
 def read_file():
+    """
+    Function to read filename
+    :return: None
+    """
     filename = input('Enter file name: ')
     if os.path.exists(filename):
         content = file_service.read_file(filename)
@@ -15,11 +19,19 @@ def read_file():
 
 
 def create_file():
+    """
+    Function to create file
+    :return: None
+    """
     content = input('Please type file content: ')
     file_service.create_file(content)
 
 
 def delete_file():
+    """
+    Function to delete file
+    :return: None
+    """
     filename = input('Enter file name to del: ')
     if os.path.isfile(filename):
         file_service.delete_file(filename)
@@ -29,12 +41,20 @@ def delete_file():
 
 
 def list_dir():
+    """
+    Function to get list dirs
+    :return: None
+    """
     f_path = input('Enter path to listdir: ')
     l_dirs = file_service.list_dir(f_path)
     print(f'{f_path} list dirs: {l_dirs}')
 
 
 def change_dir():
+    """
+    Function to change directory
+    :return: None
+    """
     directory = input('Enter directory: ')
     if os.path.isdir(directory):
         file_service.change_dir(directory)
@@ -45,6 +65,10 @@ def change_dir():
 
 
 def get_file_permissions():
+    """
+    Function to get file permission
+    :return: None
+    """
     filename = input("Enter file name : ")
     if os.path.exists(filename):
         permissions = os.stat(filename).st_mode
@@ -54,6 +78,10 @@ def get_file_permissions():
 
 
 def set_file_permissions():
+    """
+    Function to set file permission
+    :return: None
+    """
     filename = input("Enter file name : ")
     if os.path.exists(filename):
         permissions = input("Input UNIX permissions in oct format (777):")
@@ -64,11 +92,19 @@ def set_file_permissions():
 
 
 def get_cwd():
+    """
+    Function to get current directory
+    :return: None
+    """
     wd = os.getcwd()
     print(f" Currently we in: {wd}")
 
 
 def main():
+    """
+    Main function
+    :return: None
+    """
     # Create argument parser that will retrieve working directory
     parser = argparse.ArgumentParser(description='Restfull file server.')
     parser.add_argument('-d', '--directory', dest='path', help='Path to working directory')
