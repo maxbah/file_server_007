@@ -1,5 +1,6 @@
 import os
 from src import utils
+from datetime import datetime
 
 
 def read_file(filename: str) -> str:
@@ -100,6 +101,9 @@ def get_file_metadata(filename: str) -> tuple:
     :raises Exception ig file not exist
     """
     create_date = os.path.getctime(filename)
+    create_date_human = datetime.fromtimestamp(create_date).strftime("%b %d %Y %H:%M:%S")
+
     modification_date = os.path.getmtime(filename)
+    modification_date_human = datetime.fromtimestamp(modification_date).strftime("%b %d %Y %H:%M:%S")
     f_size = os.path.getsize(filename)
-    return (create_date, modification_date, f_size),
+    return (create_date_human, modification_date_human, f_size),
